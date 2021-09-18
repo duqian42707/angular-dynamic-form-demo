@@ -1,0 +1,18 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: 123456
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: true
+      FAIL_ON_EMPTY_BEANS: false
+  jpa:
+    properties:
+      hibernate.hbm2ddl.auto: update
+      dialect: org.hibernate.dialect.PostgreSQL10Dialect

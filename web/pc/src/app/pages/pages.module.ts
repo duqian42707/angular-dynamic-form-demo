@@ -7,12 +7,14 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgZorroAntdModule} from 'ng-zorro-antd';
 import {WidgetModule} from '../widget/widget.module';
 import {DelonABCModule} from '@delon/abc';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
   declarations: [WelcomeComponent],
   imports: [
     CommonModule,
+    HttpClientModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {SFSchema} from '@delon/form';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-welcome',
@@ -115,10 +116,15 @@ export class WelcomeComponent implements OnInit {
   formData: {};
 
 
-  constructor() {
+  constructor(private http: HttpClient) {
   }
 
   ngOnInit() {
+    // this.loadMockData();
+    this.queryData();
+  }
+
+  loadMockData() {
     this.formData = {
       name: '张三',
       email: 'dq@163.com',
@@ -134,8 +140,18 @@ export class WelcomeComponent implements OnInit {
     };
   }
 
+  queryData() {
+    this.http.get(`/api/query`).subscribe((res: any) => {
+      console.log(res);
+      this.formData = res.info || {};
+    });
+  }
+
   submit(value: any) {
     console.log(value);
+    this.http.post(`/api/save`, {id: null, info: value}).subscribe(res => {
+      console.log(res);
+    });
   }
 
   formChange(value: any) {
