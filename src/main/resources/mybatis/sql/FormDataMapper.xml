@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dqv5.dynamic.form.dao.FormDataMapper">
+
+    <resultMap id="formData" type="com.dqv5.dynamic.form.entity.FormData">
+        <id property="id" column="id"></id>
+        <result property="formId" column="form_id"></result>
+        <result property="info" column="info" jdbcType="OTHER" typeHandler="com.dqv5.dynamic.form.config.JsonbTypeHandler"></result>
+        <result property="createDate" column="create_date"></result>
+        <result property="lastModifiedDate" column="last_modified_date"></result>
+    </resultMap>
+
+    <!-- postgresql json 函数和运算符： https://www.postgresql.org/docs/current/functions-json.html     -->
+    <!-- mybatis postgresql json查询中问号用两个问号转义 https://blog.csdn.net/Mr_EvanChen/article/details/82793024   -->
+    <!--
+           where t.info ->> 'name' like '%李四%'
+            and (t.info ->> 'age')::int = 18
+            and t.info -> 'hobby' ?? 'pingpong' = 't'
+            and jsonb_array_length(t.info -> 'table') > 0
+    -->
+    <select id="query" resultMap="formData">
+        select *
+        from dynamic_form_data
+        <where>
+            <if test="formId!=null">and form_id = #{formId}</if>
+            <foreach collection="conditions" item="condition">
+                and ${condition}
+            </foreach>
+        </where>
+    </select>
+    <insert id="insert">
+        insert into dynamic_form_data (id, info, create_date)
+        values (#{id,jdbcType=VARCHAR},
+                #{info,jdbcType=OTHER,typeHandler=com.dqv5.dynamic.form.config.JsonbTypeHandler},
+                #{createDate,jdbcType=TIMESTAMP})
+    </insert>
+
+
+</mapper>

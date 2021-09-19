@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {NzIconService} from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   isCollapsed = false;
+
+  constructor(private nzIconService: NzIconService) {
+    nzIconService.changeAssetsSource('https://image.dqv5.com/nzicons');
+  }
 }

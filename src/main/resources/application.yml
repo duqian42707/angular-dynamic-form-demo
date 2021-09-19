@@ -16,3 +16,12 @@ spring:
     properties:
       hibernate.hbm2ddl.auto: update
       dialect: org.hibernate.dialect.PostgreSQL10Dialect
+mybatis:
+  mapper-locations: classpath:/mybatis/sql/*.xml
+  config-location: classpath:/mybatis/mybatis-config.xml
+logging:
+  level:
+    root: info
+    com.dqv5: debug
+    org.hibernate.SQL: debug
+    org.hibernate.type.descriptor.sql.BasicBinder: trace

@@ -8,10 +8,12 @@ import {NgZorroAntdModule} from 'ng-zorro-antd';
 import {WidgetModule} from '../widget/widget.module';
 import {DelonABCModule} from '@delon/abc';
 import {HttpClientModule} from '@angular/common/http';
+import { DesignComponent } from './design/design.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
-  declarations: [WelcomeComponent],
+  declarations: [WelcomeComponent, DesignComponent, HomeComponent],
   imports: [
     CommonModule,
     HttpClientModule,

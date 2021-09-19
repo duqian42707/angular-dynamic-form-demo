@@ -1,0 +1,40 @@
+<button nz-button nzType="primary" (click)="openModal()"><i nz-icon nzType="plus"></i>新增</button>
+<st #st [widthMode]="{ type: 'strict' }" [data]="url" [req]="{reName:{pi:'pageNum',ps:'pageSize'} }"
+    [columns]="columns">
+</st>
+
+<nz-modal [(nzVisible)]="editModal.visible" [nzTitle]="editModal.title" (nzOnCancel)="editModal.visible=false"
+          (nzOnOk)="handleOk()" nzWidth="100%" [nzStyle]="{ top: '0' }">
+  <div class="modal-main">
+    <div nz-row>
+      <div nz-col nzSpan="8">
+        <form nz-form [formGroup]="validateForm">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzRequired>表单名称</nz-form-label>
+            <nz-form-control [nzSpan]="14">
+              <input nz-input formControlName="formName">
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzRequired>
+              <span nz-popover [nzPopoverContent]="popverContent"><i nz-icon nzType="question-circle"></i>表单描述信息</span>
+            </nz-form-label>
+            <nz-form-control [nzSpan]="14">
+              <textarea nz-input rows="20" formControlName="infoStr" (ngModelChange)="run()"></textarea>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+      </div>
+      <div nz-col nzSpan="16">
+        <sf *ngIf="schema" layout="vertical" [schema]="schema" [button]="null"></sf>
+      </div>
+    </div>
+  </div>
+</nz-modal>
+
+
+<ng-template #popverContent>
+  <a (click)="loadDemoSchema()">示例</a>
+  <nz-divider nzType="vertical"></nz-divider>
+  <a href="https://ng-alain.com/version/8.x/form/getting-started/zh" target="_blank">文档</a>
+</ng-template>

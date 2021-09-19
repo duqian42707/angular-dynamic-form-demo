@@ -16,15 +16,14 @@ import java.util.Date;
  */
 @Data
 @Entity
-@Table(name = "dynamic_form_data")
+@Table(name = "dynamic_form_design")
 @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
-public class FormData {
+public class FormDesign {
     @Id
     @GenericGenerator(name = "uuid", strategy = "uuid")
     @GeneratedValue(generator = "uuid")
-    private String id;
     private String formId;
-//    private String userId;
+    private String formName;
 
     @Type(type = "jsonb")
     @Column(columnDefinition = "jsonb")

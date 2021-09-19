@@ -141,7 +141,7 @@ export class WelcomeComponent implements OnInit {
   }
 
   queryData() {
-    this.http.get(`/api/query`).subscribe((res: any) => {
+    this.http.get(`/api/formData/findOne`).subscribe((res: any) => {
       console.log(res);
       this.formData = res.info || {};
     });
@@ -149,7 +149,7 @@ export class WelcomeComponent implements OnInit {
 
   submit(value: any) {
     console.log(value);
-    this.http.post(`/api/save`, {id: null, info: value}).subscribe(res => {
+    this.http.post(`/api/formData/save2`, {id: null, info: value}).subscribe(res => {
       console.log(res);
     });
   }

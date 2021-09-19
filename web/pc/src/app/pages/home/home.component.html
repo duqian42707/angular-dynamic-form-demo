@@ -1,0 +1,18 @@
+选择一个表单：
+<nz-select [(ngModel)]="selectFormId" style="width:200px" (ngModelChange)="selectedFormChange($event)">
+  <nz-option *ngFor="let formDesign of formDesignList" [nzLabel]="formDesign.formName"
+             [nzValue]="formDesign.formId"></nz-option>
+</nz-select>
+
+<button nz-button nzType="primary" (click)="openModal()"><i nz-icon nzType="plus"></i>新增</button>
+<st #st [widthMode]="{ type: 'strict' }" [data]="data" [req]="{reName:{pi:'pageNum',ps:'pageSize'} }"
+    [columns]="columns">
+</st>
+
+
+<nz-modal [(nzVisible)]="editModal.visible" [nzTitle]="editModal.title" (nzOnCancel)="editModal.visible=false"
+          (nzOnOk)="handleOk()" nzWidth="100%" [nzStyle]="{ top: '0' }">
+  <div class="modal-main">
+    <sf *ngIf="schema" layout="vertical" [schema]="schema" [button]="null" [formData]="formData" (formChange)="formDataChange($event)"></sf>
+  </div>
+</nz-modal>
